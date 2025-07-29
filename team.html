@@ -46,221 +46,242 @@
   <!-- Teams Grid -->
   <section class="teams-section">
     <div class="container">
-      <div class="teams-grid">
+      <!-- Sort Controls -->
+      <div class="teams-controls">
+        <div class="sort-controls">
+          <label for="team-sort">Sort teams by:</label>
+          <select id="team-sort" class="sort-select">
+            <option value="default">Default Order</option>
+            <option value="alphabetical">Alphabetical (A-Z)</option>
+            <option value="alphabetical-desc">Alphabetical (Z-A)</option>
+            <option value="type">Team Type</option>
+          </select>
+        </div>
+        <div class="view-controls">
+          <button class="view-btn active" data-view="grid" title="Grid View">
+            <i class="fas fa-th"></i>
+          </button>
+          <button class="view-btn" data-view="list" title="List View">
+            <i class="fas fa-list"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="teams-grid" id="teams-grid">
         
         <!-- Events Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-calendar-alt"></i>
+        <div class="team-card" data-team-type="operations" data-team-name="Events Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Events Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
           </div>
-          <h3>Events Team</h3>
-          <p>Our Events Team orchestrates meaningful gatherings, fundraisers, and community engagement activities that bring people together for our cause. From large-scale galas to intimate community meetings, they create memorable experiences that inspire action and support.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Planning and executing fundraising events</li>
-              <li>Coordinating community engagement activities</li>
-              <li>Managing event logistics and vendor relationships</li>
-              <li>Creating memorable experiences for supporters</li>
-            </ul>
+          <div class="team-content">
+            <h3>Events Team</h3>
+            <p>Our Events Team orchestrates meaningful gatherings, fundraisers, and community engagement activities that bring people together for our cause.</p>
+            <div class="team-stats">
+              <span class="team-category">Operations</span>
+              <span class="team-size">8 members</span>
+            </div>
           </div>
         </div>
 
         <!-- BPH Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-handshake"></i>
+        <div class="team-card" data-team-type="partnerships" data-team-name="Business Partnerships & Outreach (BPH)">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Business Partnerships Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-handshake"></i>
+            </div>
           </div>
-          <h3>Business Partnerships & Outreach (BPH)</h3>
-          <p>The BPH Team builds strategic partnerships with corporations, organizations, and community leaders to expand our reach and impact. They cultivate relationships that create sustainable support for our programs and initiatives.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Developing corporate partnership strategies</li>
-              <li>Managing sponsor relationships</li>
-              <li>Creating mutually beneficial collaboration opportunities</li>
-              <li>Expanding organizational network and influence</li>
-            </ul>
+          <div class="team-content">
+            <h3>Business Partnerships & Outreach (BPH)</h3>
+            <p>The BPH Team builds strategic partnerships with corporations, organizations, and community leaders to expand our reach and impact.</p>
+            <div class="team-stats">
+              <span class="team-category">Partnerships</span>
+              <span class="team-size">6 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Design Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-palette"></i>
+        <div class="team-card" data-team-type="creative" data-team-name="Design Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Design Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-palette"></i>
+            </div>
           </div>
-          <h3>Design Team</h3>
-          <p>Our creative Design Team brings our mission to life through compelling visuals, user-friendly interfaces, and impactful marketing materials. They ensure our message resonates across all platforms and touchpoints.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Creating visual brand identity and materials</li>
-              <li>Designing user-friendly digital experiences</li>
-              <li>Developing campaign graphics and illustrations</li>
-              <li>Maintaining consistent visual communication</li>
-            </ul>
+          <div class="team-content">
+            <h3>Design Team</h3>
+            <p>Our creative Design Team brings our mission to life through compelling visuals, user-friendly interfaces, and impactful marketing materials.</p>
+            <div class="team-stats">
+              <span class="team-category">Creative</span>
+              <span class="team-size">5 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Drama Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-theater-masks"></i>
+        <div class="team-card" data-team-type="creative" data-team-name="Drama Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Drama Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-theater-masks"></i>
+            </div>
           </div>
-          <h3>Drama Team</h3>
-          <p>The Drama Team uses the power of storytelling and performance to educate, inspire, and raise awareness about critical issues affecting children and families. Through creative presentations, they make complex topics accessible and engaging.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Developing educational performances and presentations</li>
-              <li>Creating engaging storytelling experiences</li>
-              <li>Facilitating workshops and interactive sessions</li>
-              <li>Using arts to communicate important messages</li>
-            </ul>
+          <div class="team-content">
+            <h3>Drama Team</h3>
+            <p>The Drama Team uses the power of storytelling and performance to educate, inspire, and raise awareness about critical issues affecting children and families.</p>
+            <div class="team-stats">
+              <span class="team-category">Creative</span>
+              <span class="team-size">7 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Floor Director Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-clipboard-list"></i>
+        <div class="team-card" data-team-type="operations" data-team-name="Floor Director Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Floor Director Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
           </div>
-          <h3>Floor Director Team</h3>
-          <p>The Floor Director Team ensures smooth operations during events, meetings, and activities. They coordinate logistics, manage schedules, and provide on-site leadership to guarantee successful execution of all programs.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Coordinating event and meeting logistics</li>
-              <li>Managing on-site operations and flow</li>
-              <li>Ensuring safety and security protocols</li>
-              <li>Facilitating smooth program execution</li>
-            </ul>
+          <div class="team-content">
+            <h3>Floor Director Team</h3>
+            <p>The Floor Director Team ensures smooth operations during events, meetings, and activities. They coordinate logistics and provide on-site leadership.</p>
+            <div class="team-stats">
+              <span class="team-category">Operations</span>
+              <span class="team-size">4 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Fundraising Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-dollar-sign"></i>
+        <div class="team-card" data-team-type="finance" data-team-name="Fundraising Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Fundraising Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
           </div>
-          <h3>Fundraising Team</h3>
-          <p>Our dedicated Fundraising Team develops and implements strategies to secure the financial resources needed to support our programs. They work tirelessly to ensure sustainable funding for our mission.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Developing comprehensive fundraising strategies</li>
-              <li>Managing donor relationships and stewardship</li>
-              <li>Creating compelling fundraising campaigns</li>
-              <li>Securing grants and major gifts</li>
-            </ul>
+          <div class="team-content">
+            <h3>Fundraising Team</h3>
+            <p>Our dedicated Fundraising Team develops and implements strategies to secure the financial resources needed to support our programs.</p>
+            <div class="team-stats">
+              <span class="team-category">Finance</span>
+              <span class="team-size">6 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Games Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-gamepad"></i>
+        <div class="team-card" data-team-type="creative" data-team-name="Games Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Games Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-gamepad"></i>
+            </div>
           </div>
-          <h3>Games Team</h3>
-          <p>The Games Team creates engaging, interactive experiences that educate while entertaining. They develop games and activities that help communicate our message in fun, accessible ways that resonate with diverse audiences.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Designing educational games and activities</li>
-              <li>Creating interactive learning experiences</li>
-              <li>Developing youth engagement programs</li>
-              <li>Making learning fun and accessible</li>
-            </ul>
+          <div class="team-content">
+            <h3>Games Team</h3>
+            <p>The Games Team creates engaging, interactive experiences that educate while entertaining. They develop games and activities that communicate our message in fun ways.</p>
+            <div class="team-stats">
+              <span class="team-category">Creative</span>
+              <span class="team-size">5 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Gift Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-gift"></i>
+        <div class="team-card" data-team-type="operations" data-team-name="Gift Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Gift Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-gift"></i>
+            </div>
           </div>
-          <h3>Gift Team</h3>
-          <p>The Gift Team manages in-kind donations, volunteer appreciation, and special recognition programs. They ensure that contributions are properly acknowledged and that supporters feel valued for their generosity.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Managing in-kind donation programs</li>
-              <li>Coordinating volunteer recognition initiatives</li>
-              <li>Organizing appreciation events and activities</li>
-              <li>Ensuring proper acknowledgment of contributions</li>
-            </ul>
+          <div class="team-content">
+            <h3>Gift Team</h3>
+            <p>The Gift Team manages in-kind donations, volunteer appreciation, and special recognition programs. They ensure contributors feel valued for their generosity.</p>
+            <div class="team-stats">
+              <span class="team-category">Operations</span>
+              <span class="team-size">4 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Consumption Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-utensils"></i>
+        <div class="team-card" data-team-type="hospitality" data-team-name="Consumption Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Consumption Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-utensils"></i>
+            </div>
           </div>
-          <h3>Consumption Team</h3>
-          <p>The Consumption Team handles food services, catering coordination, and hospitality for events and meetings. They ensure that nutritional needs are met while creating welcoming environments for all participants.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Planning and coordinating event catering</li>
-              <li>Managing food service logistics</li>
-              <li>Ensuring dietary accommodations are met</li>
-              <li>Creating welcoming hospitality experiences</li>
-            </ul>
+          <div class="team-content">
+            <h3>Consumption Team</h3>
+            <p>The Consumption Team handles food services, catering coordination, and hospitality for events and meetings. They create welcoming environments for all participants.</p>
+            <div class="team-stats">
+              <span class="team-category">Hospitality</span>
+              <span class="team-size">6 members</span>
+            </div>
           </div>
         </div>
 
         <!-- MC Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-microphone"></i>
+        <div class="team-card" data-team-type="events" data-team-name="MC (Master of Ceremonies) Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="MC Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-microphone"></i>
+            </div>
           </div>
-          <h3>MC (Master of Ceremonies) Team</h3>
-          <p>The MC Team provides professional hosting and facilitation for events, ensuring engaging presentations and smooth program flow. They are the voice that guides audiences through meaningful experiences.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Hosting and facilitating events and programs</li>
-              <li>Engaging audiences with compelling presentations</li>
-              <li>Managing event timing and program flow</li>
-              <li>Creating dynamic and memorable experiences</li>
-            </ul>
+          <div class="team-content">
+            <h3>MC (Master of Ceremonies) Team</h3>
+            <p>The MC Team provides professional hosting and facilitation for events, ensuring engaging presentations and smooth program flow.</p>
+            <div class="team-stats">
+              <span class="team-category">Events</span>
+              <span class="team-size">3 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Multimedia Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-video"></i>
+        <div class="team-card" data-team-type="media" data-team-name="Multimedia Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Multimedia Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-video"></i>
+            </div>
           </div>
-          <h3>Multimedia Team</h3>
-          <p>The Multimedia Team creates powerful video content, manages live streaming, and produces digital media that amplifies our message. They capture and share the stories that inspire action and change.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Producing video content and documentaries</li>
-              <li>Managing live streaming and broadcast services</li>
-              <li>Creating digital media campaigns</li>
-              <li>Capturing and sharing impactful stories</li>
-            </ul>
+          <div class="team-content">
+            <h3>Multimedia Team</h3>
+            <p>The Multimedia Team creates powerful video content, manages live streaming, and produces digital media that amplifies our message.</p>
+            <div class="team-stats">
+              <span class="team-category">Media</span>
+              <span class="team-size">7 members</span>
+            </div>
           </div>
         </div>
 
         <!-- Publication Team -->
-        <div class="team-card">
-          <div class="team-icon">
-            <i class="fas fa-book"></i>
+        <div class="team-card" data-team-type="communications" data-team-name="Publication Team">
+          <div class="team-image">
+            <img src="photo.jpg" alt="Publication Team" class="team-photo">
+            <div class="team-icon-overlay">
+              <i class="fas fa-book"></i>
+            </div>
           </div>
-          <h3>Publication Team</h3>
-          <p>The Publication Team develops written content, manages communications, and ensures our message reaches audiences through various written formats. They are responsible for clear, compelling, and consistent messaging.</p>
-          <div class="team-responsibilities">
-            <h4>Key Responsibilities:</h4>
-            <ul>
-              <li>Creating newsletters, reports, and publications</li>
-              <li>Managing written communications and messaging</li>
-              <li>Developing content strategies and calendars</li>
-              <li>Ensuring consistent voice and brand messaging</li>
-            </ul>
+          <div class="team-content">
+            <h3>Publication Team</h3>
+            <p>The Publication Team develops written content, manages communications, and ensures our message reaches audiences through various written formats.</p>
+            <div class="team-stats">
+              <span class="team-category">Communications</span>
+              <span class="team-size">5 members</span>
+            </div>
           </div>
         </div>
 
