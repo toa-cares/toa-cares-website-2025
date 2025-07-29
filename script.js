@@ -53,6 +53,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Rotating text effect for hero section
+    const rotatingTextElement = document.querySelector('.rotating-text');
+    
+    if (rotatingTextElement) {
+        const words = [
+            'hope',
+            'education',
+            'a fair chance',
+            'clean water',
+            'healthcare',
+            'protection',
+            'a voice',
+            'a future',
+            'safety',
+            'opportunity'
+        ];
+        
+        let currentIndex = 0;
+        
+        function rotateText() {
+            rotatingTextElement.style.opacity = '0.3';
+            
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % words.length;
+                rotatingTextElement.textContent = words[currentIndex];
+                rotatingTextElement.style.opacity = '1';
+            }, 150);
+        }
+        
+        // Start rotation after initial load
+        setInterval(rotateText, 3000);
+    }
+
     // Mobile navigation toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
