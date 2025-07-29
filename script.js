@@ -1,7 +1,19 @@
 // TOA Cares Website Interactive Elements
 
+// Debug function for mobile testing
+function debugMobile() {
+    console.log('Screen width:', window.innerWidth);
+    console.log('Screen height:', window.innerHeight);
+    console.log('User agent:', navigator.userAgent);
+    console.log('Touch support:', 'ontouchstart' in window);
+}
+
+// Call debug function
+debugMobile();
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing mobile features...');
     // Smooth scrolling for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -90,7 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
+    console.log('Hamburger element:', hamburger);
+    console.log('Nav menu element:', navMenu);
+    
     if (hamburger && navMenu) {
+        console.log('Mobile navigation elements found, setting up event listeners...');
         hamburger.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');

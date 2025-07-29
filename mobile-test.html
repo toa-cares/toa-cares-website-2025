@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Test - TOA Cares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        
+        .hamburger-test {
+            display: flex;
+            flex-direction: column;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            padding: 10px;
+            background: #2B2D42;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .hamburger-test span {
+            width: 100%;
+            height: 3px;
+            background: #D2B48C;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .test-button {
+            background: #6F4E37;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+            min-height: 44px;
+        }
+        
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📱 Mobile Diagnostic Test</h1>
+        <p>This page will help identify what's not working on your phone.</p>
+    </div>
+
+    <div class="test-container">
+        <h2>Device Information</h2>
+        <div id="device-info"></div>
+    </div>
+
+    <div class="test-container">
+        <h2>CSS Media Query Test</h2>
+        <div id="media-test"></div>
+    </div>
+
+    <div class="test-container">
+        <h2>Touch Test</h2>
+        <div class="hamburger-test" id="hamburger-test">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <p>👆 Tap the hamburger menu above</p>
+        <div id="touch-status"></div>
+    </div>
+
+    <div class="test-container">
+        <h2>JavaScript Test</h2>
+        <button class="test-button" onclick="testButton()">Test Button Click</button>
+        <button class="test-button" id="touch-button">Test Touch Events</button>
+        <div id="js-status"></div>
+    </div>
+
+    <div class="test-container">
+        <h2>Link to Main Site</h2>
+        <a href="index.html" class="test-button" style="text-decoration: none; display: inline-block;">
+            Go to TOA Cares Main Site
+        </a>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        // Device information
+        function displayDeviceInfo() {
+            const info = document.getElementById('device-info');
+            info.innerHTML = `
+                <div class="status info">Screen: ${window.innerWidth} x ${window.innerHeight}</div>
+                <div class="status info">User Agent: ${navigator.userAgent}</div>
+                <div class="status info">Touch Support: ${('ontouchstart' in window) ? 'Yes' : 'No'}</div>
+                <div class="status info">Pixel Ratio: ${window.devicePixelRatio}</div>
+                <div class="status info">Orientation: ${screen.orientation ? screen.orientation.angle : 'Unknown'}</div>
+            `;
+        }
+
+        // Media query test
+        function testMediaQueries() {
+            const mediaTest = document.getElementById('media-test');
+            const queries = [
+                { query: '(max-width: 480px)', name: 'Small Mobile' },
+                { query: '(max-width: 768px)', name: 'Mobile' },
+                { query: '(max-width: 1024px)', name: 'Tablet' }
+            ];
+            
+            let html = '';
+            queries.forEach(q => {
+                const matches = window.matchMedia(q.query).matches;
+                html += `<div class="status ${matches ? 'success' : 'error'}">${q.name}: ${matches ? 'Active' : 'Inactive'}</div>`;
+            });
+            mediaTest.innerHTML = html;
+        }
+
+        // Touch test
+        const hamburger = document.getElementById('hamburger-test');
+        const touchStatus = document.getElementById('touch-status');
+        let touchWorking = false;
+
+        hamburger.addEventListener('click', function() {
+            touchStatus.innerHTML = '<div class="status success">✅ Click/Touch working!</div>';
+            touchWorking = true;
+        });
+
+        hamburger.addEventListener('touchstart', function() {
+            touchStatus.innerHTML = '<div class="status success">✅ Touch events working!</div>';
+            touchWorking = true;
+        });
+
+        // JavaScript test
+        function testButton() {
+            const jsStatus = document.getElementById('js-status');
+            jsStatus.innerHTML = '<div class="status success">✅ JavaScript onclick working!</div>';
+        }
+
+        const touchButton = document.getElementById('touch-button');
+        touchButton.addEventListener('touchstart', function() {
+            const jsStatus = document.getElementById('js-status');
+            jsStatus.innerHTML += '<div class="status success">✅ Touch event listeners working!</div>';
+        });
+
+        touchButton.addEventListener('click', function() {
+            const jsStatus = document.getElementById('js-status');
+            jsStatus.innerHTML += '<div class="status success">✅ Click event listeners working!</div>';
+        });
+
+        // Run tests on load
+        document.addEventListener('DOMContentLoaded', function() {
+            displayDeviceInfo();
+            testMediaQueries();
+            
+            setTimeout(() => {
+                if (!touchWorking) {
+                    touchStatus.innerHTML = '<div class="status error">❌ Touch not detected. Try tapping the hamburger menu.</div>';
+                }
+            }, 3000);
+        });
+
+        // Update on resize/orientation change
+        window.addEventListener('resize', function() {
+            displayDeviceInfo();
+            testMediaQueries();
+        });
+
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                displayDeviceInfo();
+                testMediaQueries();
+            }, 100);
+        });
+
+        // Console logging
+        console.log('Mobile test page loaded');
+        console.log('Window size:', window.innerWidth, 'x', window.innerHeight);
+        console.log('User agent:', navigator.userAgent);
+    </script>
+</body>
+</html>
