@@ -1,7 +1,9 @@
-// TOA Cares Website Interactive Elements
+// TOA Cares Website Interactive Elements - Enhanced Version
 
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Add loading animation
+    document.body.classList.add('loaded');
     // Smooth scrolling for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -112,16 +114,20 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Navbar background change on scroll
+    // Enhanced navbar background change on scroll
     const navbar = document.querySelector('.navbar');
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
-            navbar.style.backgroundColor = 'rgba(43, 45, 66, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
+            navbar.style.background = 'rgba(43, 45, 66, 0.98)';
+            navbar.style.backdropFilter = 'blur(25px)';
+            navbar.style.borderBottom = '1px solid rgba(255,255,255,0.15)';
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.backgroundColor = 'var(--space-cadet)';
-            navbar.style.backdropFilter = 'none';
+            navbar.style.background = 'rgba(43, 45, 66, 0.95)';
+            navbar.style.backdropFilter = 'blur(20px)';
+            navbar.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+            navbar.classList.remove('scrolled');
         }
     });
 
@@ -169,7 +175,7 @@ function scrollToTop() {
     });
 }
 
-// Add scroll to top functionality
+// Enhanced interactions and effects
 window.addEventListener('scroll', function() {
     const scrollButton = document.getElementById('scroll-to-top');
     if (scrollButton) {
@@ -179,4 +185,74 @@ window.addEventListener('scroll', function() {
             scrollButton.style.display = 'none';
         }
     }
+    
+    // Parallax effect for hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const scrolled = window.pageYOffset;
+        const parallax = scrolled * 0.5;
+        hero.style.transform = `translateY(${parallax}px)`;
+    }
+});
+
+// Add hover effects for interactive elements
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px) scale(1.02)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// Enhanced form interactions
+document.querySelectorAll('input, textarea, select').forEach(input => {
+    input.addEventListener('focus', function() {
+        this.parentElement.classList.add('focused');
+    });
+    
+    input.addEventListener('blur', function() {
+        this.parentElement.classList.remove('focused');
+        if (this.value) {
+            this.parentElement.classList.add('filled');
+        } else {
+            this.parentElement.classList.remove('filled');
+        }
+    });
+});
+
+// Add floating animation to cards
+function addFloatingAnimation() {
+    const cards = document.querySelectorAll('.program-card, .news-card, .impact-item');
+    cards.forEach((card, index) => {
+        const delay = index * 100;
+        card.style.animationDelay = `${delay}ms`;
+        card.classList.add('float-animation');
+    });
+}
+
+// Initialize floating animations when page loads
+setTimeout(addFloatingAnimation, 1000);
+
+// Add ripple effect to buttons
+document.querySelectorAll('.btn, .amount-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
 });
