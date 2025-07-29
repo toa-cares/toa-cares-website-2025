@@ -3,55 +3,342 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UNICEF MVP</title>
+  <title>TOA Cares - Making a Difference Together</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>UNICEF</h1>
-    <p>For every child, a fair chance.</p>
-    <nav>
-      <a href="#donate">Donate</a>
-      <a href="#about">About</a>
-      <a href="#news">News</a>
-      <a href="#involved">Get Involved</a>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="logo-placeholder.png" alt="TOA Cares Logo" class="logo-img">
+        <span class="logo-text">TOA CARES</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#volunteer">Volunteer</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#donate" class="donate-btn">Donate Now</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
-  <section id="about">
-    <h2>About UNICEF</h2>
-    <p>UNICEF helps children survive, thrive, and fulfill their potential from early childhood through adolescence. We work in over 190 countries and territories.</p>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Making a Difference Together</h1>
+        <p>TOA Cares is dedicated to creating positive change in our communities through education, support, and empowerment.</p>
+        <div class="hero-buttons">
+          <a href="#donate" class="btn btn-primary">Donate Now</a>
+          <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="logo-showcase">
+          <i class="fas fa-bullhorn"></i>
+          <h2>TOA CARES</h2>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="donate">
-    <h2>Donate</h2>
-    <form>
-      <label for="amount">Donation Amount:</label>
-      <input type="number" id="amount" placeholder="$50" />
-      <button type="submit">Donate Now</button>
-    </form>
+  <!-- Mission Statement -->
+  <section class="mission">
+    <div class="container">
+      <h2>Our Mission</h2>
+      <p>Empowering communities through education, advocacy, and direct support to create lasting positive change in the lives of those who need it most.</p>
+    </div>
   </section>
 
-  <section id="news">
-    <h2>Latest News</h2>
-    <article>
-      <h3>Emergency Aid in Gaza</h3>
-      <p>UNICEF is providing water, nutrition, and protection to children in conflict zones.</p>
-    </article>
-    <article>
-      <h3>Education for All</h3>
-      <p>Our programs ensure children get back to school after disasters and conflicts.</p>
-    </article>
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>About TOA Cares</h2>
+          <p>Founded with a vision to amplify voices and create meaningful change, TOA Cares works tirelessly to address critical community needs through innovative programs and partnerships.</p>
+          <p>Our approach combines grassroots advocacy with strategic initiatives to ensure sustainable impact in education, healthcare, and social justice.</p>
+          <div class="stats">
+            <div class="stat">
+              <h3>500+</h3>
+              <p>Lives Impacted</p>
+            </div>
+            <div class="stat">
+              <h3>25+</h3>
+              <p>Programs</p>
+            </div>
+            <div class="stat">
+              <h3>10+</h3>
+              <p>Communities</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <div class="image-placeholder">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="involved">
-    <h2>Get Involved</h2>
-    <p>Become a fundraiser, volunteer, or corporate partner. Every action counts.</p>
-    <button>Join Us</button>
+  <!-- Programs Section -->
+  <section id="programs" class="programs">
+    <div class="container">
+      <h2>Our Programs</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Education First</h3>
+          <p>Providing educational resources, scholarships, and mentorship programs to underserved communities.</p>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3>Health & Wellness</h3>
+          <p>Supporting access to healthcare services and promoting mental health awareness in our communities.</p>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Housing Support</h3>
+          <p>Assisting families in finding stable housing and providing emergency shelter resources.</p>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>Food Security</h3>
+          <p>Operating food banks and nutrition programs to combat hunger in local communities.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 UNICEF (Demo MVP Site)</p>
+  <!-- News Section -->
+  <section id="news" class="news">
+    <div class="container">
+      <h2>Latest News</h2>
+      <div class="news-grid">
+        <article class="news-card">
+          <div class="news-date">
+            <span class="month">Jan</span>
+            <span class="day">15</span>
+          </div>
+          <div class="news-content">
+            <h3>New Education Initiative Launched</h3>
+            <p>TOA Cares announces a new scholarship program for local students, providing educational opportunities for 50 deserving students.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="news-date">
+            <span class="month">Jan</span>
+            <span class="day">08</span>
+          </div>
+          <div class="news-content">
+            <h3>Community Health Fair Success</h3>
+            <p>Our recent health fair provided free screenings and health resources to over 200 community members.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+        <article class="news-card">
+          <div class="news-date">
+            <span class="month">Dec</span>
+            <span class="day">20</span>
+          </div>
+          <div class="news-content">
+            <h3>Holiday Food Drive Results</h3>
+            <p>Thanks to community support, we distributed 1,000 meals to families in need during the holiday season.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteer Section -->
+  <section id="volunteer" class="volunteer">
+    <div class="container">
+      <div class="volunteer-content">
+        <h2>Get Involved</h2>
+        <p>Join our community of volunteers and make a real difference. Whether you have an hour or a day, your contribution matters.</p>
+        <div class="volunteer-opportunities">
+          <div class="opportunity">
+            <h4>Event Volunteers</h4>
+            <p>Help organize and run community events</p>
+          </div>
+          <div class="opportunity">
+            <h4>Mentors</h4>
+            <p>Guide and support students in our education programs</p>
+          </div>
+          <div class="opportunity">
+            <h4>Administrative Support</h4>
+            <p>Assist with office work and program coordination</p>
+          </div>
+        </div>
+        <form class="volunteer-form">
+          <h3>Volunteer Application</h3>
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="tel" placeholder="Phone Number" required>
+          <select required>
+            <option value="">Select Interest Area</option>
+            <option value="education">Education</option>
+            <option value="health">Health & Wellness</option>
+            <option value="housing">Housing Support</option>
+            <option value="food">Food Security</option>
+            <option value="events">Event Support</option>
+          </select>
+          <textarea placeholder="Tell us about your experience and availability"></textarea>
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation Section -->
+  <section id="donate" class="donate">
+    <div class="container">
+      <div class="donate-content">
+        <h2>Support Our Cause</h2>
+        <p>Your generous donation helps us continue our vital work in the community. Every dollar makes a difference.</p>
+        <div class="donation-impact">
+          <div class="impact-item">
+            <h4>$25</h4>
+            <p>Provides a week of meals for a family</p>
+          </div>
+          <div class="impact-item">
+            <h4>$50</h4>
+            <p>Supports a student's educational materials</p>
+          </div>
+          <div class="impact-item">
+            <h4>$100</h4>
+            <p>Funds health screening for 10 people</p>
+          </div>
+        </div>
+        <form class="donation-form">
+          <div class="amount-selection">
+            <button type="button" class="amount-btn" data-amount="25">$25</button>
+            <button type="button" class="amount-btn" data-amount="50">$50</button>
+            <button type="button" class="amount-btn" data-amount="100">$100</button>
+            <input type="number" placeholder="Custom Amount" id="custom-amount">
+          </div>
+          <div class="donation-frequency">
+            <label><input type="radio" name="frequency" value="one-time" checked> One-time</label>
+            <label><input type="radio" name="frequency" value="monthly"> Monthly</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-large">Donate Now</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Address</h4>
+              <p>123 Community Street<br>Your City, State 12345</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Phone</h4>
+              <p>(555) 123-4567</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>info@toacares.org</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Office Hours</h4>
+              <p>Mon-Fri: 9:00 AM - 5:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <input type="text" placeholder="Subject" required>
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>TOA Cares</h4>
+          <p>Making a difference together through community support and advocacy.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#programs">Our Programs</a></li>
+            <li><a href="#volunteer">Volunteer</a></li>
+            <li><a href="#news">News</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="#donate">Donate</a></li>
+            <li><a href="#volunteer">Volunteer</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Community Street<br>Your City, State 12345</p>
+          <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@toacares.org</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 TOA Cares. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
+  
+  <script src="script.js"></script>
 </body>
 </html>
