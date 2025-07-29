@@ -297,3 +297,84 @@ window.addEventListener('orientationchange', function() {
         window.scrollTo(0, window.pageYOffset);
     }, 100);
 });
+
+// Team sorting and view functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const teamsGrid = document.getElementById('teams-grid');
+    const sortSelect = document.getElementById('team-sort');
+    const viewButtons = document.querySelectorAll('.view-btn');
+    
+    if (!teamsGrid || !sortSelect) return;
+    
+    // Store original order
+    const originalCards = Array.from(teamsGrid.children);
+    
+    // Sorting functionality
+    sortSelect.addEventListener('change', function() {
+        const sortValue = this.value;
+        const cards = Array.from(teamsGrid.children);
+        
+        let sortedCards;
+        
+        switch (sortValue) {
+            case 'alphabetical':
+                sortedCards = cards.sort((a, b) => {
+                    const nameA = a.dataset.teamName.toLowerCase();
+                    const nameB = b.dataset.teamName.toLowerCase();
+                    return nameA.localeCompare(nameB);
+                });
+                break;
+                
+            case 'alphabetical-desc':
+                sortedCards = cards.sort((a, b) => {
+                    const nameA = a.dataset.teamName.toLowerCase();
+                    const nameB = b.dataset.teamName.toLowerCase();
+                    return nameB.localeCompare(nameA);
+                });
+                break;
+                
+            case 'type':
+                sortedCards = cards.sort((a, b) => {
+                    const typeA = a.dataset.teamType.toLowerCase();
+                    const typeB = b.dataset.teamType.toLowerCase();
+                    if (typeA === typeB) {
+                        const nameA = a.dataset.teamName.toLowerCase();
+                        const nameB = b.dataset.teamName.toLowerCase();
+                        return nameA.localeCompare(nameB);
+                    }
+                    return typeA.localeCompare(typeB);
+                });
+                break;
+                
+            default:
+                sortedCards = originalCards.slice();
+                break;
+        }
+        
+        // Clear and re-append sorted cards with animation
+        teamsGrid.style.opacity = '0.5';
+        setTimeout(() => {
+            teamsGrid.innerHTML = '';
+            sortedCards.forEach(card => teamsGrid.appendChild(card));
+            teamsGrid.style.opacity = '1';
+        }, 150);
+    });
+    
+    // View toggle functionality
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const viewType = this.dataset.view;
+            
+            // Update active button
+            viewButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update grid class
+            if (viewType === 'list') {
+                teamsGrid.classList.add('list-view');
+            } else {
+                teamsGrid.classList.remove('list-view');
+            }
+        });
+    });
+});
