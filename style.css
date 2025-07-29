@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #2B2D42; /* Space Cadet */
+  color: #D2B48C; /* Tan */
+  line-height: 1.6;
+}
+
+header {
+  background-color: #592720; /* Caput Mortuum */
+  text-align: center;
+  padding: 2em 1em;
+}
+
+header h1 {
+  margin: 0;
+  color: #D2B48C;
+}
+
+header p {
+  font-style: italic;
+}
+
+nav a {
+  margin: 0 1em;
+  color: #D2B48C;
+  text-decoration: none;
+}
+
+section {
+  padding: 2em;
+  background-color: #4B4E58; /* Space Gray */
+  margin: 1em 0;
+}
+
+section h2 {
+  color: #D2B48C;
+}
+
+form input, form button {
+  padding: 0.5em;
+  margin: 0.5em 0;
+  border: none;
+  font-size: 1em;
+}
+
+form input {
+  width: 200px;
+}
+
+form button, section button {
+  background-color: #6F4E37; /* Coffee */
+  color: white;
+  cursor: pointer;
+}
+
+article {
+  margin-top: 1em;
+  padding: 1em;
+  background-color: #2B2D42; /* Space Cadet */
+  border-left: 4px solid #6F4E37;
+}
+
+footer {
+  text-align: center;
+  background-color: #592720;
+  padding: 1em;
+  font-size: 0.9em;
+}
