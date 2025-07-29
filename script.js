@@ -94,6 +94,32 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (navMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     }
 
@@ -202,6 +228,57 @@ function scrollToTop() {
     });
 }
 
+// Mobile-specific enhancements
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+// Touch-friendly interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add touch feedback to buttons and cards
+    const touchElements = document.querySelectorAll('.btn, .program-card, .news-card, .stat, .contact-item');
+    
+    touchElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            if (isMobile()) {
+                this.style.transform = 'scale(0.98)';
+                this.style.transition = 'transform 0.1s ease';
+            }
+        });
+        
+        element.addEventListener('touchend', function() {
+            if (isMobile()) {
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            }
+        });
+    });
+    
+    // Improve form interactions on mobile
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        // Prevent zoom on iOS when focusing inputs
+        input.addEventListener('focus', function() {
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
+            }
+        });
+        
+        input.addEventListener('blur', function() {
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+                }
+            }
+        });
+    });
+});
+
 // Add scroll to top functionality
 window.addEventListener('scroll', function() {
     const scrollButton = document.getElementById('scroll-to-top');
@@ -212,4 +289,11 @@ window.addEventListener('scroll', function() {
             scrollButton.style.display = 'none';
         }
     }
+});
+
+// Handle orientation changes
+window.addEventListener('orientationchange', function() {
+    setTimeout(function() {
+        window.scrollTo(0, window.pageYOffset);
+    }, 100);
 });
