@@ -41,6 +41,15 @@ body {
     -webkit-overflow-scrolling: touch;
   }
   
+  /* Prevent text overflow on all elements */
+  p, h1, h2, h3, h4, h5, h6, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
   /* Optimize animations for mobile */
   *, *::before, *::after {
     animation-duration: 0.3s !important;
@@ -311,6 +320,10 @@ body {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
   color: var(--slate-gray);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
 .stats {
@@ -342,13 +355,16 @@ body {
   font-weight: 700;
 }
 
-.stat p {
-  color: var(--slate-gray);
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+  .stat p {
+    color: var(--slate-gray);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 
 .about-image {
   text-align: center;
@@ -1063,11 +1079,30 @@ body {
   .about-content {
     grid-template-columns: 1fr;
     gap: 2rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .about-text {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   
   .about-text h2 {
     font-size: 2rem;
     text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .about-text p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
   }
   
   .stats {
@@ -1278,6 +1313,18 @@ body {
   .donate h2,
   .news h2 {
     font-size: 1.8rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .about-text p {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: left;
   }
   
   .stats {
