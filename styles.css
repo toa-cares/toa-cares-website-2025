@@ -67,7 +67,7 @@ body {
 
 /* Navigation */
 .navbar {
-  background: linear-gradient(to right, var(--space-cadet), #353854);
+  background: linear-gradient(to right, var(--space-cadet), #34364e);
   padding: 1.25rem 0;
   position: fixed;
   min-height: 70px;
