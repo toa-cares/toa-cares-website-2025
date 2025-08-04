@@ -68,7 +68,7 @@ body {
 /* Navigation */
 .navbar {
   background: linear-gradient(to right, var(--space-cadet), #353854);
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   position: fixed;
   top: 0;
   width: 100%;
@@ -81,15 +81,14 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 5px;
+  gap: 5px;
 }
 
 .logo-link {
