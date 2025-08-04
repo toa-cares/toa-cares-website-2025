@@ -84,7 +84,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
 }
 
 .nav-logo {
@@ -105,9 +104,10 @@ body {
 }
 
 .logo-img {
-  height: 45px;
+  height: auto;
   width: auto;
-  max-width: 140px;
+  max-height: 50px;
+  max-width: 150px;
   object-fit: contain;
 }
 
