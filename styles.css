@@ -89,6 +89,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 5px;
 }
 
 .logo-link {
