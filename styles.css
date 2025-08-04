@@ -105,8 +105,8 @@ body {
 .logo-img {
   height: 32px;
   width: auto;
-  max-width: 120px;
-  object-fit: cover;
+  max-width: 110px;
+  object-fit: contain;
 }
 
 .logo-text {
