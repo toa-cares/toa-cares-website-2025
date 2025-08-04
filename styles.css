@@ -70,6 +70,7 @@ body {
   background: linear-gradient(to right, var(--space-cadet), #353854);
   padding: 1.25rem 0;
   position: fixed;
+  min-height: 70px;
   top: 0;
   width: 100%;
   z-index: 1000;
