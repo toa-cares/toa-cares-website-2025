@@ -68,9 +68,9 @@ body {
 /* Navigation */
 .navbar {
   background: linear-gradient(to right, var(--space-cadet), #353854);
-  padding: 1.25rem 0;
+  padding: 0.75rem 0;
   position: fixed;
-  min-height: 70px;
+  height: 70px;
   top: 0;
   width: 100%;
   z-index: 1000;
@@ -80,9 +80,9 @@ body {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -121,7 +121,7 @@ body {
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2rem;
+  gap: 1rem;
   align-items: center;
 }
 
