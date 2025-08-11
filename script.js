@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (rotatingTextElement) {
         const words = [
-            'to the children',
+            'to communities',
             'to the elders',
             'to the environment',
             'to everyone'
