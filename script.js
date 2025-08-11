@@ -389,12 +389,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const candidateExts = ['webp', 'jpg', 'jpeg', 'png'];
 
+    // Cross-browser allSettled helper
+    const allSettled = Promise.allSettled
+        ? (promises) => Promise.allSettled(promises)
+        : (promises) => Promise.all(promises.map(p => Promise.resolve(p)
+            .then(value => ({ status: 'fulfilled', value }))
+            .catch(reason => ({ status: 'rejected', reason }))));
+
+    function buildUrl(baseName, ext){
+        // Encode folder and filename to avoid issues with spaces
+        const folder = encodeURIComponent('action images');
+        return `${folder}/${encodeURIComponent(baseName)}.${ext}`;
+    }
+
     function tryLoad(baseName){
         return new Promise((resolve, reject) => {
             let idx = 0;
             function attempt(){
                 if (idx >= candidateExts.length) { reject(new Error('no match')); return; }
-                const url = (`action images/${baseName}.` + candidateExts[idx]).replace(/ /g, '%20');
+                const url = buildUrl(baseName, candidateExts[idx]);
                 const img = new Image();
                 img.onload = () => resolve(url);
                 img.onerror = () => { idx += 1; attempt(); };
@@ -411,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const dotsContainer = carouselEl.querySelector('.carousel-dots');
         const captionEl = carouselEl.querySelector('.carousel-caption');
 
-        Promise.allSettled(items.map(i => tryLoad(i.base))).then(results => {
+        allSettled(items.map(i => tryLoad(i.base))).then(results => {
             const valid = results
                 .map((r, i) => (r.status === 'fulfilled' ? { src: r.value, meta: items[i] } : null))
                 .filter(Boolean);
@@ -460,6 +473,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 dots.forEach((d, i) => d.classList.toggle('active', i === current));
                 if (captionEl && valid[current]) {
                     captionEl.innerHTML = `<h3>${valid[current].meta.title}</h3><p>${valid[current].meta.description}</p>`;
+                } else if (captionEl && !valid[current]) {
+                    captionEl.innerHTML = '';
                 }
             }
 

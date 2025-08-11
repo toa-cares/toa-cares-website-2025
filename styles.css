@@ -2178,7 +2178,13 @@ body {
   text-align: center;
   font-size: 2.5rem;
   color: var(--space-cadet);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.our-work .section-subtitle {
+  text-align: center;
+  color: var(--slate-gray);
+  margin-bottom: 1.25rem;
 }
 
 /* Bigger carousel for Our Work */
