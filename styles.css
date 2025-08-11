@@ -275,6 +275,7 @@ body {
   inset: 0;
   display: block;
   transition: transform 0.5s ease;
+  z-index: 1;
 }
 
 /* 16:9 frame using aspect-ratio; fallback uses padding-top */
@@ -285,12 +286,14 @@ body {
 }
 
 /* Ensure controls and dots remain clickable */
+.carousel-control, .carousel-dots { z-index: 2; }
 
 .carousel-slide {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 .carousel-slide img {
