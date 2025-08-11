@@ -2171,19 +2171,20 @@ body {
 /* Our Work Section */
 .our-work {
   padding: 5rem 0;
-  background-color: var(--light-gray);
+  background: linear-gradient(135deg, var(--space-cadet) 0%, var(--slate-gray) 100%);
+  color: var(--white);
 }
 
 .our-work h2 {
   text-align: center;
   font-size: 2.5rem;
-  color: var(--space-cadet);
+  color: var(--tan);
   margin-bottom: 0.5rem;
 }
 
 .our-work .section-subtitle {
   text-align: center;
-  color: var(--slate-gray);
+  color: rgba(255,255,255,0.85);
   margin-bottom: 1.25rem;
 }
 
