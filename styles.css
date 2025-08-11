@@ -2167,3 +2167,45 @@ body {
     margin: 0 8px;
   }
 }
+
+/* Our Work Section */
+.our-work {
+  padding: 5rem 0;
+  background-color: var(--light-gray);
+}
+
+.our-work h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--space-cadet);
+  margin-bottom: 1rem;
+}
+
+/* Bigger carousel for Our Work */
+.work-carousel {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Caption overlay for Our Work carousel */
+.carousel-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  padding: 12px 16px;
+  z-index: 3;
+}
+
+.carousel-caption h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.carousel-caption p {
+  font-size: 0.95rem;
+  margin: 0;
+}
