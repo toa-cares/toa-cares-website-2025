@@ -58,16 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (rotatingTextElement) {
         const words = [
-            'hope',
-            'education',
-            'a fair chance',
-            'clean water',
-            'healthcare',
-            'protection',
-            'a voice',
-            'a future',
-            'safety',
-            'opportunity'
+            'to the children',
+            'to the elders',
+            'to the environment',
+            'to everyone'
         ];
         
         let currentIndex = 0;
