@@ -381,114 +381,111 @@ if (carousel) {
     const nextBtn = carousel.querySelector('.next');
     const dotsContainer = carousel.querySelector('.carousel-dots');
 
-    // Known files in folder. HEIC may not display in browsers; we will filter by extension support.
-    const imageFiles = [
-        'action images/3 juni.jpg',
-        'action images/26 juli.HEIC',
-        'action images/12 April.HEIC',
-        'action images/17 mei 1.HEIC',
-        'action images/17 mei 2.HEIC',
-        'action images/11 Maret.HEIC'
-    ];
+    // Discover images by trying multiple extensions per base name
+    const baseNames = ['3 juni', '26 juli', '12 April', '17 mei 1', '17 mei 2', '11 Maret'];
+    const candidateExts = ['webp', 'jpg', 'jpeg', 'png'];
 
-    // Only include common web-viewable formats
-    const supportedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
-    const slides = imageFiles.filter(path => {
-        const lower = path.toLowerCase();
-        return supportedExtensions.some(ext => lower.endsWith(ext));
-    });
-
-    // Fallback: if no supported images, keep logo showcase behavior
-    if (slides.length === 0) {
-        const fallback = document.createElement('div');
-        fallback.className = 'carousel-slide';
-        fallback.innerHTML = '<img src="toa-cares-logo.webp" alt="TOA Cares">';
-        track.appendChild(fallback);
-    } else {
-        slides.forEach((src, idx) => {
-            const slide = document.createElement('div');
-            slide.className = 'carousel-slide';
-
-            const img = document.createElement('img');
-            img.src = src.replace(/ /g, '%20');
-            img.alt = 'Action photo ' + (idx + 1);
-
-            slide.appendChild(img);
-            track.appendChild(slide);
-
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot';
-            dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
-            dot.addEventListener('click', () => goToSlide(idx));
-            dotsContainer.appendChild(dot);
+    function tryLoad(baseName) {
+        return new Promise((resolve, reject) => {
+            let idx = 0;
+            function attempt() {
+                if (idx >= candidateExts.length) { reject(new Error('no match')); return; }
+                const url = (`action images/${baseName}.` + candidateExts[idx]).replace(/ /g, '%20');
+                const img = new Image();
+                img.onload = () => resolve(url);
+                img.onerror = () => { idx += 1; attempt(); };
+                img.src = url;
+            }
+            attempt();
         });
     }
 
-            const slideElements = Array.from(track.children);
-        // Hide controls/dots if not needed
+    Promise.allSettled(baseNames.map(tryLoad)).then(results => {
+        const urls = results.filter(r => r.status === 'fulfilled').map(r => r.value);
+
+        if (urls.length === 0) {
+            const fallback = document.createElement('div');
+            fallback.className = 'carousel-slide';
+            fallback.innerHTML = '<img src="toa-cares-logo.webp" alt="TOA Cares">';
+            track.appendChild(fallback);
+        } else {
+            urls.forEach((src, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Action photo ' + (idx + 1);
+                slide.appendChild(img);
+                track.appendChild(slide);
+
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot';
+                dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+                dot.addEventListener('click', () => goToSlide(idx));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        const slideElements = Array.from(track.children);
         if (slideElements.length <= 1) {
             if (prevBtn) prevBtn.style.display = 'none';
             if (nextBtn) nextBtn.style.display = 'none';
             if (dotsContainer) dotsContainer.style.display = 'none';
         }
+
         let current = 0;
         let autoTimer = null;
 
-    function update() {
-        slideElements.forEach((el, i) => {
-            el.style.opacity = i === current ? '1' : '0';
-            el.style.transition = 'opacity 0.5s ease';
-        });
-        const dots = Array.from(dotsContainer.children);
-        dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    }
+        function update() {
+            slideElements.forEach((el, i) => {
+                el.style.opacity = i === current ? '1' : '0';
+                el.style.transition = 'opacity 0.5s ease';
+                el.style.position = 'absolute';
+                el.style.inset = '0';
+            });
+            const dots = Array.from(dotsContainer.children);
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
 
-    function goToSlide(index) {
-        current = (index + slideElements.length) % slideElements.length;
-        update();
-        restartAuto();
-    }
+        function goToSlide(index) {
+            current = (index + slideElements.length) % slideElements.length;
+            update();
+            restartAuto();
+        }
 
-    function next() { goToSlide(current + 1); }
-    function prev() { goToSlide(current - 1); }
+        function next() { goToSlide(current + 1); }
+        function prev() { goToSlide(current - 1); }
 
-    if (prevBtn) prevBtn.addEventListener('click', prev);
-    if (nextBtn) nextBtn.addEventListener('click', next);
+        if (prevBtn) prevBtn.addEventListener('click', prev);
+        if (nextBtn) nextBtn.addEventListener('click', next);
 
-            function startAuto() {
+        function startAuto() {
             stopAuto();
             if (slideElements.length > 1) {
                 autoTimer = setInterval(next, 5000);
             }
         }
-    function stopAuto() {
-        if (autoTimer) clearInterval(autoTimer);
-        autoTimer = null;
-    }
-    function restartAuto() { startAuto(); }
+        function stopAuto() {
+            if (autoTimer) clearInterval(autoTimer);
+            autoTimer = null;
+        }
+        function restartAuto() { startAuto(); }
 
-    // Initialize
-    requestAnimationFrame(() => {
-        slideElements.forEach((el, i) => {
-            el.style.position = 'absolute';
-            el.style.inset = '0';
-        });
-        current = 0;
         update();
         startAuto();
-    });
 
-    // Pause on hover (desktop)
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
+        // Pause on hover (desktop)
+        carousel.addEventListener('mouseenter', stopAuto);
+        carousel.addEventListener('mouseleave', startAuto);
 
-    // Swipe support
-    let startX = 0;
-    carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
-    carousel.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) {
-            if (dx < 0) next(); else prev();
-        }
+        // Swipe support
+        let startX = 0;
+        carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) {
+                if (dx < 0) next(); else prev();
+            }
+        });
     });
 }
