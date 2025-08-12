@@ -58,16 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (rotatingTextElement) {
         const words = [
-            'hope',
-            'education',
-            'a fair chance',
-            'clean water',
-            'healthcare',
-            'protection',
-            'a voice',
-            'a future',
-            'safety',
-            'opportunity'
+            'to communities',
+            'to the elders',
+            'to the environment',
+            'to everyone'
         ];
         
         let currentIndex = 0;
@@ -378,3 +372,153 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Build carousels (hero and our work) from action images
+(function initCarousels(){
+    const carousels = Array.from(document.querySelectorAll('.carousel[data-carousel]'));
+    if (carousels.length === 0) return;
+
+    const workItems = [
+        { base: '3 juni', title: 'Community Outreach - 3 Juni', description: 'Volunteers supporting local families with supplies and care.' },
+        { base: '26 juli', title: 'Neighborhood Clean-Up - 26 Juli', description: 'Community members improving shared spaces together.' },
+        { base: '12 April', title: 'Health & Wellness Event - 12 April', description: 'Free screenings and wellness education for residents.' },
+        { base: '17 mei 1', title: 'Education Support - 17 Mei', description: 'Delivering materials and mentorship for learners.' },
+        { base: '17 mei 2', title: 'Education Support - 17 Mei', description: 'Continuing outreach with tutoring and guidance.' },
+        { base: '11 Maret', title: 'Emergency Relief - 11 Maret', description: 'Rapid-response aid for families in urgent need.' }
+    ];
+
+    const candidateExts = ['webp', 'jpg', 'jpeg', 'png'];
+
+    // Cross-browser allSettled helper
+    const allSettled = Promise.allSettled
+        ? (promises) => Promise.allSettled(promises)
+        : (promises) => Promise.all(promises.map(p => Promise.resolve(p)
+            .then(value => ({ status: 'fulfilled', value }))
+            .catch(reason => ({ status: 'rejected', reason }))));
+
+    function buildUrl(baseName, ext){
+        // Encode folder and filename to avoid issues with spaces
+        const folder = encodeURIComponent('action images');
+        return `${folder}/${encodeURIComponent(baseName)}.${ext}`;
+    }
+
+    function tryLoad(baseName){
+        return new Promise((resolve, reject) => {
+            let idx = 0;
+            function attempt(){
+                if (idx >= candidateExts.length) { reject(new Error('no match')); return; }
+                const url = buildUrl(baseName, candidateExts[idx]);
+                const img = new Image();
+                img.onload = () => resolve(url);
+                img.onerror = () => { idx += 1; attempt(); };
+                img.src = url;
+            }
+            attempt();
+        });
+    }
+
+    function buildCarousel(carouselEl, items){
+        const track = carouselEl.querySelector('.carousel-track');
+        const prevBtn = carouselEl.querySelector('.prev');
+        const nextBtn = carouselEl.querySelector('.next');
+        const dotsContainer = carouselEl.querySelector('.carousel-dots');
+        const captionEl = carouselEl.querySelector('.carousel-caption');
+
+        allSettled(items.map(i => tryLoad(i.base))).then(results => {
+            const valid = results
+                .map((r, i) => (r.status === 'fulfilled' ? { src: r.value, meta: items[i] } : null))
+                .filter(Boolean);
+
+            if (valid.length === 0) {
+                const fallback = document.createElement('div');
+                fallback.className = 'carousel-slide';
+                fallback.innerHTML = '<img src="toa-cares-logo.webp" alt="TOA Cares">';
+                track.appendChild(fallback);
+            } else {
+                valid.forEach((item, idx) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'carousel-slide';
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = item.meta.title || ('Action photo ' + (idx + 1));
+                    slide.appendChild(img);
+                    track.appendChild(slide);
+
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+                    dot.addEventListener('click', () => goToSlide(idx));
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            const slideElements = Array.from(track.children);
+            if (slideElements.length <= 1) {
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+                if (dotsContainer) dotsContainer.style.display = 'none';
+            }
+
+            let current = 0;
+            let autoTimer = null;
+
+            function update(){
+                slideElements.forEach((el, i) => {
+                    el.style.opacity = i === current ? '1' : '0';
+                    el.style.transition = 'opacity 0.5s ease';
+                    el.style.position = 'absolute';
+                    el.style.inset = '0';
+                });
+                const dots = Array.from(dotsContainer.children);
+                dots.forEach((d, i) => d.classList.toggle('active', i === current));
+                if (captionEl && valid[current]) {
+                    captionEl.innerHTML = `<h3>${valid[current].meta.title}</h3><p>${valid[current].meta.description}</p>`;
+                } else if (captionEl && !valid[current]) {
+                    captionEl.innerHTML = '';
+                }
+            }
+
+            function goToSlide(index){
+                current = (index + slideElements.length) % slideElements.length;
+                update();
+                restartAuto();
+            }
+
+            function next(){ goToSlide(current + 1); }
+            function prev(){ goToSlide(current - 1); }
+
+            if (prevBtn) prevBtn.addEventListener('click', prev);
+            if (nextBtn) nextBtn.addEventListener('click', next);
+
+            function startAuto(){
+                stopAuto();
+                if (slideElements.length > 1) {
+                    autoTimer = setInterval(next, 5000);
+                }
+            }
+            function stopAuto(){ if (autoTimer) clearInterval(autoTimer); autoTimer = null; }
+            function restartAuto(){ startAuto(); }
+
+            update();
+            startAuto();
+
+            // Pause on hover (desktop)
+            carouselEl.addEventListener('mouseenter', stopAuto);
+            carouselEl.addEventListener('mouseleave', startAuto);
+
+            // Swipe support
+            let startX = 0;
+            carouselEl.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+            carouselEl.addEventListener('touchend', (e) => {
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) > 40) { if (dx < 0) next(); else prev(); }
+            });
+        });
+    }
+
+    carousels.forEach(el => {
+        const type = el.dataset.carousel;
+        // Use the same image set for both hero and work; captions will only render where captionEl exists
+        buildCarousel(el, workItems);
+    });
+})();
