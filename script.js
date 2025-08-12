@@ -121,25 +121,60 @@ document.addEventListener('DOMContentLoaded', function() {
     const forms = document.querySelectorAll('form');
     
     forms.forEach(form => {
+        // Skip donation form here; it has a dedicated handler below
+        if (form.classList.contains('donation-form')) return;
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success message (in a real application, this would submit to a server)
-            const formType = this.classList.contains('donation-form') ? 'donation' : 
-                            this.classList.contains('volunteer-form') ? 'volunteer application' : 
-                            this.classList.contains('contact-form') ? 'message' : 'form';
+            const formType = this.classList.contains('volunteer-form') ? 'volunteer application' : 
+                             this.classList.contains('contact-form') ? 'message' : 'form';
             
             alert(`Thank you! Your ${formType} has been submitted successfully. We will get back to you soon.`);
-            
-            // Reset form
             this.reset();
-            
-            // Remove active states from donation buttons
-            if (this.classList.contains('donation-form')) {
-                amountButtons.forEach(btn => btn.classList.remove('active'));
-            }
         });
     });
+
+    // Dedicated donation form handler
+    const donationForm = document.getElementById('donation-form');
+    if (donationForm) {
+        donationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = (document.getElementById('donor-name') || {}).value || '';
+            const email = (document.getElementById('donor-email') || {}).value || '';
+            const phone = (document.getElementById('donor-phone') || {}).value || '';
+            const amountValue = (document.getElementById('custom-amount') || {}).value || '';
+
+            const amount = Number(amountValue);
+            if (!amount || Number.isNaN(amount) || amount < 1000) {
+                alert('Please enter a valid amount (minimum IDR 1,000).');
+                return;
+            }
+
+            const submitBtn = document.getElementById('donate-submit');
+            if (submitBtn) submitBtn.disabled = true;
+
+            try {
+                const res = await fetch('http://localhost:3000/api/donations', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, amount })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to create donation');
+                if (data.paymentUrl) {
+                    window.location.href = data.paymentUrl;
+                } else {
+                    alert('Payment URL not received.');
+                }
+            } catch (err) {
+                alert('Error: ' + (err.message || 'Unknown error'));
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
+        });
+    }
 
     // Scroll animations
     const observerOptions = {

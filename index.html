@@ -148,18 +148,23 @@
             <p>Funds health screening for 10 people</p>
           </div>
         </div>
-        <form class="donation-form">
+        <form class="donation-form" id="donation-form">
+          <div class="donor-details">
+            <input type="text" id="donor-name" placeholder="Your Name" required>
+            <input type="email" id="donor-email" placeholder="Your Email" required>
+            <input type="tel" id="donor-phone" placeholder="Your Phone" pattern="[0-9+\-() ]+">
+          </div>
           <div class="amount-selection">
-            <button type="button" class="amount-btn" data-amount="25">$25</button>
-            <button type="button" class="amount-btn" data-amount="50">$50</button>
-            <button type="button" class="amount-btn" data-amount="100">$100</button>
-            <input type="number" placeholder="Custom Amount" id="custom-amount">
+            <button type="button" class="amount-btn" data-amount="25000">IDR 25k</button>
+            <button type="button" class="amount-btn" data-amount="50000">IDR 50k</button>
+            <button type="button" class="amount-btn" data-amount="100000">IDR 100k</button>
+            <input type="number" placeholder="Custom Amount (IDR)" id="custom-amount" min="1000" step="1000">
           </div>
           <div class="donation-frequency">
             <label><input type="radio" name="frequency" value="one-time" checked> One-time</label>
-            <label><input type="radio" name="frequency" value="monthly"> Monthly</label>
+            <label><input type="radio" name="frequency" value="monthly" disabled> Monthly (coming soon)</label>
           </div>
-          <button type="submit" class="btn btn-primary btn-large">Donate Now</button>
+          <button type="submit" class="btn btn-primary btn-large" id="donate-submit">Donate Now</button>
         </form>
       </div>
     </div>
