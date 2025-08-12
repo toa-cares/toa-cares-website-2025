@@ -117,27 +117,57 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form submissions (placeholder functionality)
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
+    // Donation form submission -> create DOKU checkout session
+    const donationForm = document.querySelector('.donation-form');
+    if (donationForm) {
+        donationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            try {
+                const amountInput = document.getElementById('custom-amount');
+                const frequencyInput = document.querySelector('input[name="frequency"]:checked');
+                const amount = amountInput && amountInput.value ? parseInt(amountInput.value, 10) : 0;
+                const frequency = frequencyInput ? frequencyInput.value : 'one-time';
+
+                if (!amount || amount <= 0) {
+                    alert('Please enter a valid donation amount.');
+                    return;
+                }
+
+                const resp = await fetch('/api/donations', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount, frequency })
+                });
+
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data.error || 'Failed to start donation');
+                }
+
+                const checkoutUrl = data.checkoutUrl;
+                if (typeof loadJokulCheckout === 'function' && checkoutUrl) {
+                    loadJokulCheckout(checkoutUrl);
+                } else if (checkoutUrl) {
+                    window.location.href = checkoutUrl;
+                } else {
+                    throw new Error('No checkout URL returned');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Sorry, we could not start the payment. Please try again.');
+            }
+        });
+    }
+
+    // Other forms (contact, etc.) placeholder handling
+    const otherForms = document.querySelectorAll('form:not(.donation-form)');
+    otherForms.forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Show success message (in a real application, this would submit to a server)
-            const formType = this.classList.contains('donation-form') ? 'donation' : 
-                            this.classList.contains('volunteer-form') ? 'volunteer application' : 
-                            this.classList.contains('contact-form') ? 'message' : 'form';
-            
+            const formType = this.classList.contains('volunteer-form') ? 'volunteer application' : 
+                             this.classList.contains('contact-form') ? 'message' : 'form';
             alert(`Thank you! Your ${formType} has been submitted successfully. We will get back to you soon.`);
-            
-            // Reset form
             this.reset();
-            
-            // Remove active states from donation buttons
-            if (this.classList.contains('donation-form')) {
-                amountButtons.forEach(btn => btn.classList.remove('active'));
-            }
         });
     });
 

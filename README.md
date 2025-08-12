@@ -165,3 +165,15 @@ This project is open source and available for charitable organizations to use an
 ---
 
 **TOA Cares** - Making a difference together through community support and advocacy.
+
+## Payments (DOKU Checkout)
+
+- Backend lives in `server/` and serves the static site plus payment APIs.
+- Setup:
+  1. `cd server && npm install`
+  2. Copy `.env.example` to `.env` and fill `DOKU_CLIENT_ID` and `DOKU_SECRET_KEY` from your DOKU Sandbox.
+  3. `npm start` then open `http://localhost:3000`.
+- Donation flow:
+  - The Donate form calls `POST /api/donations`, creates a DOKU Checkout session, and opens the hosted payment.
+  - Webhook endpoint: `POST /api/webhooks/doku` (configure in DOKU dashboard). Logs to `doku-webhook.log`.
+  - Success/failed pages: `/payment/success` and `/payment/failed`.
