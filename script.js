@@ -122,6 +122,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     forms.forEach(form => {
         form.addEventListener('submit', function(e) {
+            // Allow real submission for contact form (wired to FormSubmit)
+            if (this.classList.contains('contact-form')) {
+                return;
+            }
+            
             e.preventDefault();
             
             // Show success message (in a real application, this would submit to a server)
@@ -137,6 +142,35 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove active states from donation buttons
             if (this.classList.contains('donation-form')) {
                 amountButtons.forEach(btn => btn.classList.remove('active'));
+            }
+        });
+    });
+
+    // Copy-to-clipboard for bank details
+    const copyButtons = document.querySelectorAll('.copy-btn[data-copy]');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const textToCopy = this.getAttribute('data-copy');
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(textToCopy);
+                } else {
+                    const tempInput = document.createElement('input');
+                    tempInput.value = textToCopy;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                }
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                this.disabled = true;
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.disabled = false;
+                }, 1200);
+            } catch (err) {
+                console.error('Copy failed', err);
             }
         });
     });

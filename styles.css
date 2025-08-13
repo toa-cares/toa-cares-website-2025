@@ -2252,3 +2252,67 @@ body {
   font-size: 0.95rem;
   margin: 0;
 }
+
+/* Bank transfer card */
+.bank-transfer {
+  margin: 2rem auto 0;
+  max-width: 680px;
+  text-align: left;
+}
+
+.bank-transfer h3 {
+  color: var(--space-cadet);
+  margin-bottom: 0.75rem;
+}
+
+.bank-card {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 1rem 1.25rem;
+}
+
+.bank-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.08);
+}
+
+.bank-row:last-child {
+  border-bottom: none;
+}
+
+.bank-row .label {
+  color: var(--slate-gray);
+  font-weight: 600;
+}
+
+.bank-row .value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: var(--space-cadet);
+}
+
+.bank-card .copy-btn {
+  margin-left: 0.5rem;
+}
+
+.bank-note {
+  margin-top: 0.75rem;
+  color: var(--slate-gray);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .bank-row {
+    grid-template-columns: 120px 1fr;
+  }
+  .bank-card .copy-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0.5rem;
+  }
+}
