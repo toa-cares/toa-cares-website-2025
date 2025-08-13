@@ -162,7 +162,7 @@ body {
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: 75vh;
   display: flex;
   align-items: center;
   background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
@@ -172,7 +172,7 @@ body {
 .hero-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2.5rem;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
@@ -180,10 +180,10 @@ body {
 }
 
 .hero-text h1 {
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   font-weight: 300;
   color: var(--space-cadet);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.2;
   text-transform: lowercase;
 }
@@ -201,9 +201,9 @@ body {
 }
 
 .hero-text p {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: var(--slate-gray);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   line-height: 1.6;
   max-width: 500px;
 }
@@ -215,7 +215,7 @@ body {
 }
 
 .btn {
-  padding: 0.8rem 2rem;
+  padding: 0.7rem 1.4rem;
   text-decoration: none;
   border-radius: var(--border-radius, 5px);
   font-weight: 600;
@@ -223,7 +223,7 @@ body {
   border: 2px solid transparent;
   display: inline-block;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .btn-primary {
@@ -262,11 +262,11 @@ body {
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 680px;
-  border-radius: 16px;
+  max-width: 600px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  border: 3px solid var(--tan);
+  border: 2px solid var(--tan);
   background: var(--white);
 }
 
@@ -393,7 +393,7 @@ body {
 .mission {
   background-color: var(--tan);
   color: var(--space-cadet);
-  padding: 4rem 0;
+  padding: 3rem 0;
   text-align: center;
 }
 
@@ -411,14 +411,14 @@ body {
 
 /* About Section */
 .about {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background-color: var(--light-gray);
 }
 
 .about-content {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -516,7 +516,7 @@ body {
 
 /* Programs Section */
 .programs {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background-color: var(--light-gray);
 }
 
@@ -530,7 +530,7 @@ body {
 
 .section-subtitle {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   color: var(--slate-gray);
   font-size: 1.2rem;
   max-width: 800px;
@@ -598,7 +598,7 @@ body {
 
 /* News Section */
 .news {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background-color: var(--light-gray);
 }
 
@@ -606,7 +606,7 @@ body {
   text-align: center;
   font-size: 2.5rem;
   color: var(--space-cadet);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .news-grid {
@@ -676,7 +676,7 @@ body {
 /* Volunteer Section */
 /* Take Action Section */
 .volunteer {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background: linear-gradient(135deg, var(--space-cadet) 0%, var(--slate-gray) 100%);
   color: var(--white);
 }
@@ -684,7 +684,7 @@ body {
 .volunteer-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
@@ -696,8 +696,8 @@ body {
 }
 
 .volunteer-text p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -715,7 +715,7 @@ body {
 
 .volunteer-stat {
   background-color: rgba(255,255,255,0.1);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 15px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.2);
@@ -796,7 +796,7 @@ body {
 
 /* Donation Section */
 .donate {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background-color: var(--white);
 }
 
@@ -813,7 +813,7 @@ body {
 .donate p {
   font-size: 1.2rem;
   color: var(--slate-gray);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -829,15 +829,30 @@ body {
 
 .donate-embed-wrapper iframe {
   width: 100%;
-  height: 820px;
+  height: 560px;
   border: 0;
   display: block;
 }
 
 @media (max-width: 768px) {
   .donate-embed-wrapper iframe {
-    height: 700px;
+    height: 520px;
   }
+}
+
+/* Fallback card style for donation when iframe is blocked */
+.donate-embed-fallback {
+  margin: 1.5rem auto 0;
+  max-width: 680px;
+  background-color: var(--light-gray);
+  border: 2px dashed var(--tan);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  color: var(--space-cadet);
+}
+
+.donate-embed-fallback p {
+  margin: 0.25rem 0;
 }
 
 .donation-impact {
@@ -917,7 +932,7 @@ body {
 
 /* Contact Section */
 .contact {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background-color: var(--light-gray);
 }
 
@@ -925,13 +940,13 @@ body {
   text-align: center;
   font-size: 2.5rem;
   color: var(--space-cadet);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .contact-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .contact-info {
@@ -945,7 +960,7 @@ body {
   align-items: flex-start;
   gap: 1rem;
   background-color: var(--white);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: var(--shadow);
 }
@@ -967,7 +982,7 @@ body {
 
 .contact-form {
   background-color: var(--white);
-  padding: 2rem;
+  padding: 1.25rem;
   border-radius: 15px;
   box-shadow: var(--shadow);
 }
@@ -992,14 +1007,14 @@ body {
 .footer {
   background-color: var(--space-cadet);
   color: var(--white);
-  padding: 3rem 0 1rem;
+  padding: 2rem 0 1rem;
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .footer-section h4 {
@@ -1059,7 +1074,7 @@ body {
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 2rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1696,14 +1711,14 @@ body {
 
 /* Team Preview Section */
 .team-preview {
-  padding: 80px 0;
+  padding: 60px 0;
   background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
 }
 
 .team-preview-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 40px;
   align-items: center;
 }
 
@@ -1728,7 +1743,7 @@ body {
 
 .team-highlight {
   background: var(--white);
-  padding: 30px;
+  padding: 22px;
   border-radius: 15px;
   box-shadow: var(--shadow);
   text-align: center;
@@ -1782,7 +1797,7 @@ body {
 }
 
 .teams-section {
-  padding: 80px 0;
+  padding: 60px 0;
   background-color: var(--light-gray);
 }
 
@@ -2029,7 +2044,7 @@ body {
 .join-team {
   background: linear-gradient(135deg, var(--coffee) 0%, var(--caput-mortuum) 100%);
   color: var(--white);
-  padding: 80px 0;
+  padding: 60px 0;
   text-align: center;
 }
 
@@ -2191,7 +2206,7 @@ body {
 
 /* Our Work Section */
 .our-work {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   background: linear-gradient(135deg, var(--space-cadet) 0%, var(--slate-gray) 100%);
   color: var(--white);
 }
