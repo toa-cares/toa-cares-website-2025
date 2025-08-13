@@ -135,17 +135,37 @@
   <!-- Donation Section -->
   <section id="donate" class="donate">
     <div class="container">
-      <div class="donate-content">
-        <h2>Support Our Cause</h2>
-        <p>Donate securely through Saweria.</p>
-        <div class="donate-embed-fallback" role="note" aria-live="polite">
-          <p>We can’t display Saweria here because their site blocks embedding in other websites for security reasons.</p>
-          <p>
-            <a href="https://saweria.co/toacares" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Open Saweria in a new tab</a>
-          </p>
-        </div>
+              <div class="donate-content">
+          <h2>Support Our Cause</h2>
+          <p>Donate securely through Saweria.</p>
+          <div class="donate-embed-fallback" role="note" aria-live="polite">
+            <p>We can’t display Saweria here because their site blocks embedding in other websites for security reasons.</p>
+            <p>
+              <a href="https://saweria.co/toacares" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Open Saweria in a new tab</a>
+            </p>
+          </div>
 
-      </div>
+          <div class="bank-transfer">
+            <h3>Bank Transfer</h3>
+            <div class="bank-card">
+              <div class="bank-row">
+                <span class="label">Bank</span>
+                <span class="value">BCA</span>
+              </div>
+              <div class="bank-row">
+                <span class="label">Account Name</span>
+                <span class="value">Earleen Yaparyy</span>
+              </div>
+              <div class="bank-row">
+                <span class="label">Account Number</span>
+                <span class="value">3977771601</span>
+                <button class="btn btn-secondary copy-btn" type="button" data-copy="3977771601" aria-label="Copy account number">Copy</button>
+              </div>
+              <p class="bank-note">Please include your name in the transfer description so we can acknowledge your gift.</p>
+            </div>
+          </div>
+
+        </div>
     </div>
   </section>
 
@@ -184,11 +204,14 @@
             </div>
           </div>
         </div>
-        <form class="contact-form">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Your Email" required>
-          <input type="text" placeholder="Subject" required>
-          <textarea placeholder="Your Message" rows="5" required></textarea>
+        <form class="contact-form" action="https://formsubmit.co/toa.cares@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New message from TOA Cares website">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
           <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
       </div>
