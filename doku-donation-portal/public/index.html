@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Donate</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 2rem; max-width: 700px; margin: auto; background: #fafafa; }
+    .card { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    label { display: block; margin: .5rem 0 .25rem; font-weight: 600; }
+    input { width: 100%; padding: .6rem .7rem; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; }
+    button { margin-top: 1rem; background: #0ea5e9; color: white; padding: .7rem 1rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+    .help { color: #64748b; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <h1>Make a Donation</h1>
+  <p class="help">Enter your details and donation amount (IDR). You'll be redirected to the secure DOKU payment page.</p>
+  <div class="card">
+    <label for="name">Name</label>
+    <input id="name" placeholder="Jane Donor" />
+
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="jane@example.org" />
+
+    <label for="phone">Phone</label>
+    <input id="phone" placeholder="08123456789" />
+
+    <label for="amount">Amount (IDR)</label>
+    <input id="amount" type="number" min="1000" step="1000" placeholder="50000" />
+
+    <button id="donate">Donate</button>
+  </div>
+
+  <script>
+    const donateBtn = document.getElementById('donate');
+    donateBtn.addEventListener('click', async () => {
+      donateBtn.disabled = true;
+      const payload = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        amount: Number(document.getElementById('amount').value)
+      };
+      try {
+        const res = await fetch('/api/donations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed');
+        if (data.paymentUrl) {
+          window.location.href = data.paymentUrl;
+        } else {
+          alert('Payment URL not received.');
+        }
+      } catch (e) {
+        alert('Error: ' + e.message);
+      } finally {
+        donateBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
