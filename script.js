@@ -379,8 +379,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (carousels.length === 0) return;
 
     const workItems = [
-        { base: '3 juni', title: ' Pantai Tanjung Pasir - 3 Juni', description: '' },
-        { base: '26 juli', title: 'Panti Asuhan Dorkas - 26 Juli', description: 'Small steps, big impact — every piece of trash collected is a step closer to a cleaner, greener future. 💚♻️' },
+        { base: '3 juni', title: ' Pantai Tanjung Pasir - 3 Juni', description: 'Small steps, big impact — every piece of trash collected is a step closer to a cleaner, greener future. 💚♻️' },
+        { base: '26 juli', title: 'Panti Asuhan Dorkas - 26 Juli', description: 'With sharing knowledge and education as it's goal, we strive for everyone to have a brighter future' },
         { base: '12 April', title: 'Rumah Autis Jakarta - 12 April', description: 'From making adorable puppet pals🧸 with colorful fabrics🎨 to dancing like nobody’s watching🕺and singing our hearts out 🎤🎶 as laughter fills the air😹' },
         { base: '17 mei 1', title: 'Taste of Kindness - 17 Mei', description: 'Toa Cares is back at it again — this time sharing 100 food boxes & drinks to our lovely friends around Pluit & Muara Karang, North Jakarta!' },
         { base: '17 mei 2', title: 'Taste of Kindness - 17 Mei', description: 'Toa Cares is back at it again — this time sharing 100 food boxes & drinks to our lovely friends around Pluit & Muara Karang, North Jakarta!' },
