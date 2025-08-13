@@ -379,12 +379,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (carousels.length === 0) return;
 
     const workItems = [
-        { base: '3 juni', title: 'Community Outreach - 3 Juni', description: 'Volunteers supporting local families with supplies and care.' },
-        { base: '26 juli', title: 'Neighborhood Clean-Up - 26 Juli', description: 'Community members improving shared spaces together.' },
-        { base: '12 April', title: 'Health & Wellness Event - 12 April', description: 'Free screenings and wellness education for residents.' },
-        { base: '17 mei 1', title: 'Education Support - 17 Mei', description: 'Delivering materials and mentorship for learners.' },
-        { base: '17 mei 2', title: 'Education Support - 17 Mei', description: 'Continuing outreach with tutoring and guidance.' },
-        { base: '11 Maret', title: 'Emergency Relief - 11 Maret', description: 'Rapid-response aid for families in urgent need.' }
+        { base: '3 juni', title: ' Pantai Tanjung Pasir - 3 Juni', description: '' },
+        { base: '26 juli', title: 'Panti Asuhan Dorkas - 26 Juli', description: 'Small steps, big impact — every piece of trash collected is a step closer to a cleaner, greener future. 💚♻️' },
+        { base: '12 April', title: 'Rumah Autis Jakarta - 12 April', description: 'From making adorable puppet pals🧸 with colorful fabrics🎨 to dancing like nobody’s watching🕺and singing our hearts out 🎤🎶 as laughter fills the air😹' },
+        { base: '17 mei 1', title: 'Taste of Kindness - 17 Mei', description: 'Toa Cares is back at it again — this time sharing 100 food boxes & drinks to our lovely friends around Pluit & Muara Karang, North Jakarta!' },
+        { base: '17 mei 2', title: 'Taste of Kindness - 17 Mei', description: 'Toa Cares is back at it again — this time sharing 100 food boxes & drinks to our lovely friends around Pluit & Muara Karang, North Jakarta!' },
+        { base: '11 Maret', title: 'Panti Asuhan Hati Bangsa - 11 Maret', description: 'It was filled with laughter🤭, fun games🎮, and unforgettable moments🌟 that made it truly special.' }
     ];
 
     const candidateExts = ['webp', 'jpg', 'jpeg', 'png'];
