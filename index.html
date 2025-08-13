@@ -6,6 +6,10 @@
   <title>TOA Cares - Making a Difference Together</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <meta name="description" content="TOA Cares brings people together to support communities of all ages and backgrounds—advancing education, health, dignity, and a thriving environment for everyone.">
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 </head>
 <body>
   <!-- Navigation -->
@@ -133,34 +137,13 @@
     <div class="container">
       <div class="donate-content">
         <h2>Support Our Cause</h2>
-        <p>Your generous donation helps us continue our vital work in the community. Every dollar makes a difference.</p>
-        <div class="donation-impact">
-          <div class="impact-item">
-            <h4>$25</h4>
-            <p>Provides a week of meals for a family</p>
-          </div>
-          <div class="impact-item">
-            <h4>$50</h4>
-            <p>Supports a student's educational materials</p>
-          </div>
-          <div class="impact-item">
-            <h4>$100</h4>
-            <p>Funds health screening for 10 people</p>
-          </div>
+        <p>Donate securely through Saweria.</p>
+        <div class="donate-embed-wrapper">
+          <iframe src="https://saweria.co/toacares" title="Saweria - TOA Cares" loading="lazy" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-forms allow-scripts allow-same-origin allow-popups"></iframe>
         </div>
-        <form class="donation-form">
-          <div class="amount-selection">
-            <button type="button" class="amount-btn" data-amount="25">$25</button>
-            <button type="button" class="amount-btn" data-amount="50">$50</button>
-            <button type="button" class="amount-btn" data-amount="100">$100</button>
-            <input type="number" placeholder="Custom Amount" id="custom-amount">
-          </div>
-          <div class="donation-frequency">
-            <label><input type="radio" name="frequency" value="one-time" checked> One-time</label>
-            <label><input type="radio" name="frequency" value="monthly"> Monthly</label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-large">Donate Now</button>
-        </form>
+        <p>
+          <a href="https://saweria.co/toacares" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Open Saweria in a new tab</a>
+        </p>
       </div>
     </div>
   </section>
@@ -172,17 +155,17 @@
       <div class="contact-content">
         <div class="contact-info">
           <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
+            <i class="fab fa-instagram"></i>
             <div>
-              <h4>Address</h4>
-              <p>123 Community Street<br>Your City, State 12345</p>
+              <h4>Instagram</h4>
+              <p><a href="https://www.instagram.com/toa.cares" target="_blank" rel="noopener noreferrer">@toa.cares</a></p>
             </div>
           </div>
           <div class="contact-item">
-            <i class="fas fa-phone"></i>
+            <i class="fab fa-tiktok"></i>
             <div>
-              <h4>Phone</h4>
-              <p>(555) 123-4567</p>
+              <h4>TikTok</h4>
+              <p><a href="https://www.tiktok.com/@toa.cares" target="_blank" rel="noopener noreferrer">@toa.cares</a></p>
             </div>
           </div>
           <div class="contact-item">
@@ -221,6 +204,9 @@
           <div class="social-links">
             <a href="https://www.instagram.com/toa.cares" target="_blank" rel="noopener noreferrer" aria-label="TOA Cares on Instagram">
               <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@toa.cares" target="_blank" rel="noopener noreferrer" aria-label="TOA Cares on TikTok">
+              <i class="fab fa-tiktok"></i>
             </a>
           </div>
         </div>
@@ -263,6 +249,6 @@
     <i class="fas fa-chevron-up"></i>
   </button>
   
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

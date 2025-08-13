@@ -271,6 +271,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Lazy-load team images
+    document.querySelectorAll('img.team-photo').forEach(img => {
+        img.loading = 'lazy';
+        img.decoding = 'async';
+    });
 });
 
 // Add scroll to top functionality
@@ -439,11 +445,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     const slide = document.createElement('div');
                     slide.className = 'carousel-slide';
                     const img = document.createElement('img');
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
                     img.src = item.src;
                     img.alt = item.meta.title || ('Action photo ' + (idx + 1));
                     slide.appendChild(img);
                     track.appendChild(slide);
-
+                    
                     const dot = document.createElement('button');
                     dot.className = 'carousel-dot';
                     dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
