@@ -76,8 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
         }
         
-        // Start rotation after initial load
-        setInterval(rotateText, 3000);
+        // Respect reduced motion preferences
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            setInterval(rotateText, 3000);
+        }
     }
 
     // Mobile navigation toggle
@@ -202,15 +205,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navbar background change on scroll
     const navbar = document.querySelector('.navbar');
     
+    let navbarScrolled = false;
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            navbar.style.backgroundColor = 'rgba(43, 45, 66, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.backgroundColor = 'var(--space-cadet)';
-            navbar.style.backdropFilter = 'none';
+        const isScrolled = window.scrollY > 100;
+        if (isScrolled !== navbarScrolled) {
+            navbarScrolled = isScrolled;
+            if (isScrolled) {
+                navbar.style.backgroundColor = 'rgba(43, 45, 66, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.backgroundColor = 'var(--space-cadet)';
+                navbar.style.backdropFilter = 'none';
+            }
         }
-    });
+    }, { passive: true });
 
     // Counter animation for stats
     const stats = document.querySelectorAll('.stat h3');
@@ -272,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transform = 'scale(0.98)';
                 this.style.transition = 'transform 0.1s ease';
             }
-        });
+        }, { passive: true });
         
         element.addEventListener('touchend', function() {
             if (isMobile()) {
@@ -280,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.style.transform = '';
                 }, 100);
             }
-        });
+        }, { passive: true });
     });
     
     // Improve form interactions on mobile
@@ -323,7 +331,7 @@ window.addEventListener('scroll', function() {
             scrollButton.style.display = 'none';
         }
     }
-});
+}, { passive: true });
 
 // Handle orientation changes
 window.addEventListener('orientationchange', function() {
@@ -503,6 +511,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let current = 0;
             let autoTimer = null;
+            const autoPlayAllowed = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
             function update(){
                 slideElements.forEach((el, i) => {
@@ -534,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             function startAuto(){
                 stopAuto();
-                if (slideElements.length > 1) {
+                if (autoPlayAllowed && slideElements.length > 1) {
                     autoTimer = setInterval(next, 5000);
                 }
             }
