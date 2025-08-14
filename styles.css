@@ -59,6 +59,14 @@ body {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -268,9 +276,14 @@ body {
   box-shadow: var(--shadow);
   border: 2px solid var(--tan);
   background: var(--white);
-}
+  }
 
- .carousel-track {
+@supports (aspect-ratio: 1 / 1) {
+  .carousel { aspect-ratio: 16 / 9; }
+  .carousel::before { content: none; }
+}
+ 
+  .carousel-track {
   position: absolute;
   inset: 0;
   display: block;
@@ -2315,4 +2328,9 @@ body {
     justify-self: start;
     margin-top: 0.5rem;
   }
+}
+
+.hero, .mission, .about, .our-work, .team-preview, .donate, .contact, .footer, .teams-section, .join-team {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }

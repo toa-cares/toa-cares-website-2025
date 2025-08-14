@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TOA Cares - Making a Difference Together</title>
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
   <meta name="description" content="TOA Cares brings people together to support communities of all ages and backgrounds—advancing education, health, dignity, and a thriving environment for everyone.">
   <link rel="icon" href="icon.png" type="image/png">
+  <link rel="preload" as="image" href="toa-cares-logo-compact.webp" type="image/webp">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="prefetch" href="team.html" as="document">
+  <noscript>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  </noscript>
 </head>
 <body>
   <!-- Navigation -->
@@ -17,7 +22,7 @@
     <div class="nav-container">
       <div class="nav-logo">
         <a href="#home" class="logo-link">
-          <img src="toa-cares-logo-compact.webp" alt="TOA Cares Logo" class="logo-img">
+          <img src="toa-cares-logo-compact.webp" alt="TOA Cares Logo" class="logo-img" fetchpriority="high">
         </a>
       </div>
       <ul class="nav-menu">
