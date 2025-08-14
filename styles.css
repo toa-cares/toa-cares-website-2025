@@ -299,7 +299,7 @@ body {
 }
 
 /* Ensure controls and dots remain clickable */
-.carousel-control, .carousel-dots { z-index: 2; }
+.carousel-control, .carousel-dots { z-index: 5; }
 
 .carousel-slide {
   position: absolute;
@@ -331,7 +331,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 5;
 }
 
 .carousel-control:hover {
@@ -348,7 +348,7 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-  z-index: 2;
+  z-index: 5;
 }
 
 .carousel-dot {
@@ -2215,6 +2215,23 @@ body {
     max-width: 100%;
     margin: 0 8px;
   }
+  .carousel-control {
+    width: 44px;
+    height: 44px;
+  }
+  .carousel-control.prev { left: 6px; }
+  .carousel-control.next { right: 6px; }
+  .carousel-caption h3 { font-size: 1rem; }
+  .carousel-caption p {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .team-preview-showcase {
+    display: none;
+  }
 }
 
 /* Our Work Section */
@@ -2253,6 +2270,7 @@ body {
   color: #fff;
   padding: 12px 16px;
   z-index: 3;
+  pointer-events: none;
 }
 
 .carousel-caption h3 {
